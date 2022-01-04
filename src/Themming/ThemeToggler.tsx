@@ -1,16 +1,15 @@
-
 import styled,{ITheme} from "styled-components";
 
 const Button = styled.button`
   width: 90%;
-  height: 45px;
+  height: 35px;
   border-radius: 5px;
   padding: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   background-color: #ffffff10;
   color: ${({ theme }) => theme.themeMode.text};
-  transition: all 1s ease;
+  transition: all 0.5s ease;
   margin-top: 5px;  
   border:none;
   outline: none;

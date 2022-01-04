@@ -1,84 +1,69 @@
 import ReactDOM from "react-dom";
-import { ReactNode, useEffect, useState } from "react";
-import { SnackbarShowBox, BoxBtn, ISnacktype, ProgressBarContainer, ProgressBarPercentage,ProgressBar,IProgressbar } from "./Snackbar";
+import React, { useEffect, useState } from "react";
+import { SnackbarShowBox, BoxBtn, ISnacktype, ProgressBarContainer, ProgressBarPercentage, ProgressBar, IProgressbar } from "./Snackbar";
 import { SpinnerContainer } from "../../../GlobalStyledCom";
+import { InterpolationFunction } from "styled-components";
 
 interface ISTProps extends ISnacktype {
-    arr:Array<React.ReactNode>;
+  arr?: Array<React.ReactNode>;
+  // key?:React.Key;
 }
-const IntervalBar = (props:IProgressbar):JSX.Element=>{
 
-  return(
-  <ProgressBarContainer>
-  <ProgressBar>
-    <ProgressBarPercentage width={props.width} />
-  </ProgressBar>
-</ProgressBarContainer>
-)}
+type TType = "error" | "info" | "success" | "warning" | "loading" | undefined;
 
-const SnackBarTest = (props: ISnacktype): JSX.Element => {
+const IntervalBar = (props: IProgressbar): JSX.Element => {
+  return (
+    <ProgressBarContainer>
+      <ProgressBar>
+        <ProgressBarPercentage width={props.width} />
+      </ProgressBar>
+    </ProgressBarContainer>
+  )
+}
+
+export const St = (props: TType) => {
   const [Display, setDisplay] = useState(true);
-  const [val, setVal] = useState<number>(100)
+  const [val, setVal] = useState<number>(0);
   const modalRoot = document.getElementById("portal") as HTMLElement;
   useEffect(() => {
-    // const iterval = setInterval(() => {
-    //     setVal((val: number) => {
-    //         const newval: number = val + 10;
-    //         if (newval === 100) {
-    //             clearInterval(iterval)
-    //             setDisplay(!Display)
-    //         }            
-    //         return newval
-    //     });
-    // }, 1000)
-}, [])
+    const iterval = setInterval(() => {
+      setVal((val: number) => {
+        const newval: number = val + 5;
+        if (newval === 100) {
+          clearInterval(iterval)
+          setDisplay(!Display)
+        }
+        return newval
+      });
+    }, 250)
+  }, [])
+
   return ReactDOM.createPortal(
     <>
-      {/* arr.map((i) => (
-          ))} */}
-      {Display && (
-        <SnackbarShowBox type={props.type}>
-          {props.type === "error" && <label>🚫</label>}
-          {props.type === "success" && <label>👌</label>}
-          {props.type === "info" && <label>📃</label>}
-          {props.type === "loading" && <SpinnerContainer/>}
-          {props.type === "warning" && <label>🚨</label>}
+      {Display &&
+        <SnackbarShowBox type={props}>
+          {props === "success" && <label>👌</label>}
+          {props === "info" && <label>📃</label>}
+          {props === "error" && <label>🚫</label>}
+          {props === "loading" && <SpinnerContainer />}
+          {props === "warning" && <label>🚨</label>}
           <BoxBtn onClick={() => setDisplay(!Display)}>x</BoxBtn>
-          <IntervalBar width={val}/>
-        </SnackbarShowBox>
-      )}
-    </>,
-    modalRoot
+          <IntervalBar width={val} />
+        </SnackbarShowBox>}
+    </>, modalRoot
   );
 };
-export default SnackBarTest;
+type Tstate = Pick<ISTProps, "type">;
+// Tstate|(() => Tstate)  setState((prevState:any) => [...prevState, snack]); 
+export const useSnackBar = () => {
+  const [state, setState] = useState<TType>(undefined);
+  const setNewSnake = (snack: TType = undefined) => {
+    setState(snack);
+    console.log("state", state)
+  };
 
-const Snackbar =({arr,...props}:ISTProps)=>{
-   const[Arr]=useState<ReactNode[]>(arr)
-
-  return <SnackBarTest {...props} />
-}
-
-// interface IuseSnackBarO{
-
-//         SnackBar:ReactNode,
-//         setNewSnake:() => void
-
-// }
-// const useSnackBar = ({type}:ISnacktype):IuseSnackBarO => {
-//   const [state, setState] = useState<ISnacktype[]>([]);
-
-//   const setNewSnake = () => {
-//   setState((prevState) => [...prevState,{type}]);
-
-//   };
-
-//   return {
-//     SnackBar:<p>my  edhjhjhjcxmcnbcnmbnxbcnbnbn</p>,
-//     setNewSnake
-// };
-// };
-
-//
-
-// snakeBar: setNewSnake,St:()=>St(state)
+  return {
+    snakeBar: setNewSnake, St: () => St(state)
+  };
+};
+export default useSnackBar;

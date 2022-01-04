@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { FlexColumn } from "../../../GlobalStyledCom";
 import { ChildBox, Errormessage, ToolTipBox, TTtextBody, PopUP, IToRightPop } from "./Tooltip.Styles";
 
 export interface ToolTipProps extends IToRightPop {
@@ -6,19 +7,24 @@ export interface ToolTipProps extends IToRightPop {
     srcpic?: string;
     text?: string;
     header?: string | undefined;
+    content?:ReactNode;
+    className?:string
 }
-const AdvancedTT: React.FC<ToolTipProps> = ({ children, srcpic, text, header, type }) => {
-    if (!text && !srcpic) return <ErrorMssg type={type} />;  
+const AdvancedTT: React.FC<ToolTipProps> = ({ children, srcpic, text, header, type,content,className }) => {
+    if (!text && !srcpic && !children) return <ErrorMssg type={type} />;  
     return  (
         <>
-        <ToolTipBox>          
+        <ToolTipBox className={className}>          
           <PopUP type={type}>
-                {srcpic && <img src={srcpic} />}
-                <TTtextBody>
+                {srcpic ? <img loading="lazy" src={srcpic} />:<></>}
+               {text && header? <TTtextBody>
                     <h3>{header}</h3>
-                    {text ? <p>{text}</p> : <></>}
-                </TTtextBody>
-                <i></i>
+                     <p>{text}</p>            
+                </TTtextBody> : <></>} 
+                 <FlexColumn>
+                   {content}
+                 </FlexColumn> 
+               <i/>
             </PopUP>           
 
             <ChildBox>{children}</ChildBox>

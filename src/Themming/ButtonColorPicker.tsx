@@ -15,12 +15,12 @@ const ThemePicker = styled.svg<{theColor:string}>`
 `;
 
 const InnerContainer = styled.div<{picker:boolean}>`
-  left: ${({ picker }) => (picker ? "0px" : "-100px")};
+  left: ${({ picker }) => (picker ? "0px" : "-70px")};
   position: absolute;
   transition: all 0.25s ease;
   background: #242424;
   /* background:${({ theme }) => theme.innerback}; */
-  width: 100px;
+  width: 70px;
   height: 240px;
   display: flex;
   flex-direction: column;
@@ -54,8 +54,8 @@ const OuterContainer = styled.div`
   margin-top: 1%;
 `;
 const PickerContainer = styled("button")<{picker:boolean}>`
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 30px;
   background: #242424;
   /* background:${({ theme }) => theme.innerback}; */
   border-radius: 0 10px 10px 0;
@@ -65,7 +65,7 @@ const PickerContainer = styled("button")<{picker:boolean}>`
   outline: none;
   border: none;
   position: absolute;
-  left: ${({ picker }) => (picker ? "0" : "100px")}; 
+  left: ${({ picker }) => (picker ? "0" : "70px")}; 
   z-index: 199;
   transition: all 0.25s ease;
 `;
@@ -100,8 +100,7 @@ const CPicker:React.FC<ICPicker> = ({ thecolor, toggleColor, ttheme, thtogle }) 
           Theme
         </PickerContainer>
         <InnerContainer picker={picker}>
-          <ThemeToggle thetheme={ttheme} toggleTheme={thtogle}  />
-     
+          <ThemeToggle thetheme={ttheme} toggleTheme={thtogle}  />     
           <SpotBox>
             {Object.values(Tcolors).map((i) => (
               <ThemePicker

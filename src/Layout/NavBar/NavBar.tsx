@@ -1,3 +1,5 @@
+import { useState } from "react";
+import StyledInput from "../../Components/MiniWidgets/AwosomeInput/AwosomeInput";
 import { Typography } from "../../GlobalStyledCom";
 import {
   NavbarContainer,
@@ -7,13 +9,14 @@ import {
 } from "./NavBar.Styles";
 
 export default function Navbar() {
+  const[value,setvalue]=useState<Array<string>>(["keyword"]);
 
   return (
 
     <NavbarContainer>
       <InnerNav>
         <NavBox>
-          {/* <StyledInput/> */}
+          <StyledInput/>
         </NavBox>
         <NavBox>
           <Icon href={"/home"} >

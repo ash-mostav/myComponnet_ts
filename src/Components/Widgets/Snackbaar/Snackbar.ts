@@ -3,7 +3,7 @@ import { FlexColumn, FlexRow } from "../../../GlobalStyledCom";
 import { FlexCenter } from "../../../Themming/GlobalCSSVariables";
 
 export interface ISnacktype {
-  type: "error" | "info" | "success" | "warning" | "loading";
+  type?: "error" | "info" | "success" | "warning" | "loading";
 }
 export interface IProgressbar {
   width: number;
@@ -18,8 +18,19 @@ const SharedStyles = css`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  label{
-    font-size:1.7rem;
+  label {
+    font-size: 1.7rem;
+  }
+`;
+const Default = css`
+  ${SharedStyles}
+  border-radius: 10px 10px 0 0;
+  top: 10%;
+  left: 20%;
+  background: Red;
+  font-size: 2rem;
+  &:after {
+    content: " Please choose type  (error | info | success | warning | loading )";
   }
 `;
 const leftmotion = css`
@@ -70,7 +81,7 @@ export const SnackbarShowBox = styled.div<ISnacktype>((props: ISnacktype) => {
         top: 3%;
         left: 45%;
         &:before {
-          content: 'Somethings gone wrong , sorry....';
+          content: "Somethings gone wrong , sorry....";
         }
         ${topmotion}
         ${SharedStyles}
@@ -84,7 +95,7 @@ export const SnackbarShowBox = styled.div<ISnacktype>((props: ISnacktype) => {
         width: 50vw;
         height: 20%;
         &:before {
-          content: 'This is useful and is quite a long message, and wont be hidden automatically. You need to dismiss this by clicking the  on the right.';
+          content: "This is useful and is quite a long message, and wont be hidden automatically. You need to dismiss this by clicking the  on the right.";
         }
         ${bottommotion}
         ${SharedStyles}
@@ -98,7 +109,7 @@ export const SnackbarShowBox = styled.div<ISnacktype>((props: ISnacktype) => {
         top: 15%;
         height: 10%;
         &:before {
-          content: 'That worked, hoorah.';
+          content: "That worked, hoorah.";
         }
         ${leftmotion}
         ${SharedStyles}
@@ -112,7 +123,7 @@ export const SnackbarShowBox = styled.div<ISnacktype>((props: ISnacktype) => {
         left: 1%;
         height: 10%;
         &:before {
-          content: ' Oops,You probably shouldnt have seen that.';
+          content: " Oops,You probably shouldnt have seen that.";
         }
         ${leftmotion}
         ${SharedStyles}
@@ -128,7 +139,7 @@ export const SnackbarShowBox = styled.div<ISnacktype>((props: ISnacktype) => {
         height: 10%;
         transition: all 0.3s;
         &:before {
-          content: 'Loding ...Please wait ';
+          content: "Loding ...Please wait ";
         }
         ${leftmotion}
         ${SharedStyles}
@@ -203,23 +214,27 @@ export const ProgressBar = styled(FlexColumn)`
   height: 5px;
   width: 100%;
   background: #fff;
-  border-radius:0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
   justify-content: start;
   align-items: start;
+  transition:all 0.1s ease;
+  
 `;
 
-export const ProgressBarPercentage = styled(ProgressBar)((props:IProgressbar) => ({
+export const ProgressBarPercentage = styled(ProgressBar)(
+  (props: IProgressbar) => ({
     width: props.width + "%",
-}));
+  })
+);
 
 export const ProgressBarContainer = styled(FlexRow)`
-width:100%;
+  width: 100%;
   justify-content: center;
-  position:absolute;
-  bottom:-5px;
-  left:0;
-  ${ProgressBarPercentage}{
-    background:${({theme})=>theme.colors};
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  ${ProgressBarPercentage} {
+    /* background: ${({ theme }) => theme.colors}; */
     /* background: linear-gradient(
         90deg,
         rgba(255, 0, 0, 1) 0%,
@@ -232,12 +247,11 @@ width:100%;
         rgba(95, 21, 242, 1) 70%,
         rgba(186, 12, 248, 1) 80%,
         rgba(251, 7, 217, 1) 90%,
-        rgba(255, 0, 0, 1) 100% */        
-    /* ); */
-    /* background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+        rgba(255, 0, 0, 1) 100% 
+    ); */
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3,rgba(95, 21, 242, 1), #dd00f3, rgba(79, 220, 74, 1) , rgba(63, 218, 216, 1));
 background-size: 1800% 1800%;
--webkit-animation: rainbow 18s ease infinite;
--z-animation: rainbow 18s ease infinite;
+-webkit-animation: rainbow 18s ease infinite alternate;
 -o-animation: rainbow 18s ease infinite;
   animation: rainbow 18s ease infinite;}
 
@@ -260,6 +274,6 @@ background-size: 1800% 1800%;
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
-} */
+}
   }
 `;

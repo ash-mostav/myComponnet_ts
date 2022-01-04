@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { FlexColumn } from "../../../GlobalStyledCom";
 
 export interface IToRightPop {
   type: "right" | "left" | "top" | "bottom";
@@ -6,6 +7,7 @@ export interface IToRightPop {
 const SharedStyles = css`
   min-width: 200px;
   max-width: 400px;
+  height: auto;
   margin-left: 20px;
   padding: 0;
   color: #eeeeee;
@@ -20,6 +22,13 @@ const SharedStyles = css`
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.1s;
+  /* ${FlexColumn}{
+ display: flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  }; */
+ 
   img {
     width: 300px;
     height: 90px;
@@ -102,25 +111,25 @@ const Top = css`
   }
 `;
 const Bottom = css`
-  top: 26px;
+  top: 28px;
   left: 50%;
   transform: translate(-50%, 0);
   i {
     position: absolute;
-    top: 2px;
+    top: 0px;
     left: 50%;
     margin-top: -12px;
     width: 12px;
     height: 24px;
-    overflow: hidden;
     &:after {
       content: "";
       position: absolute;
-      width: 12px;
-      height: 12px;
-      left: 50%;
-      transform: translate(-50%, 50%) rotate(-45deg);
-      background-color: #444444;
+      transform: translate(-50%, 50%) ;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #444444; 
      
     }
   }
@@ -168,14 +177,15 @@ export const TTtextBody = styled.div`
 export const ChildBox = styled.div``;
 export const ToolTipBox = styled.div`
   display: inline-block;
+  position: inherit;
   position: relative;
   border-bottom: 1px dotted #666;
   text-align: left;
   &:hover {
-    ${PopUP} {
-      visibility: visible;
-      opacity: 1;
-    }
+  ${PopUP} {
+    visibility: visible;
+    opacity: 1;
+  }
   }
 `;
 export const IconSpan = styled.span`

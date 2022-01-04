@@ -5,9 +5,13 @@ import AdvancedInput from "../../Components/MiniWidgets/AdInput/AdvancedInput";
 import ProgressBar from "../../Components/MiniWidgets/Progressbar/ProgressBar";
 import RadioButton from "../../Components/MiniWidgets/RadioButton/Radio";
 import { Input } from "../../Components/Widgets/AnotherInput/AnotherInput";
-import SnackBarTest from "../../Components/Widgets/Snackbaar/SnackBaar";
+import Gallery from "../../Components/Widgets/Gallery/Gallery";
+import useSnackBar from "../../Components/Widgets/Snackbaar/SnackBaar";
 import AdvancedTT from "../../Components/Widgets/ToolTip/AdvancedToolTip";
 import { Container, FlexColumn, FlexRow } from "../../GlobalStyledCom";
+// import SnackBarTest from "../../Components/Widgets/Snackbaar/SnackBaar";
+import TagInput from "../../Components/MiniWidgets/TagInput/TagInput";
+import SearchTaginput from "../../Components/MiniWidgets/Serachtaginput/TagSearch";
 
 interface IradioProps {
   type: 'radio';
@@ -26,11 +30,12 @@ interface RadioArrShape extends IProps {
   id: string;
 }
 
-type  Tstate=Omit<RadioArrShape,'arr'>
+type Tstate = Omit<RadioArrShape, 'arr'>
 
 
 
-const HomeScreen: React.FC<IradioProps> = () => {
+const HomeScreen = () => {
+  const { snakeBar, St } = useSnackBar();
   const [inputstate, setstate] = useState<string>("");
   const [radiostate, setradiostate] = useState<string>("");
   const [Arr] = useState<Tstate[]>([
@@ -51,20 +56,22 @@ const HomeScreen: React.FC<IradioProps> = () => {
     },
   ]);
 
-  const handleChangeradio = (e: React.ChangeEvent<HTMLInputElement>) => {   
+  const handleChangeradio = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value) {
-      setradiostate(e.target.value)     
-    }      
+      setradiostate(e.target.value)
+      snakeBar("success");
+    }
     return
   };
-  //  const {SnackBar,setNewSnake}=useSnackBar({type:"error"})
   return (
     <>
-    <SnackBarTest type="success"/>
-   {/* <SnackBarTest type="error"/>
-   <SnackBarTest type="info"/>
-   <SnackBarTest type="warning"/>
-   <SnackBarTest type="loading"/> */}
+      <St />
+      <Container >
+
+        {/* tags={["google","linkdin"]} */}
+      <SearchTaginput
+      />
+      </Container>
       <Container>
         <Button
           text={"iam here"}
@@ -76,18 +83,20 @@ const HomeScreen: React.FC<IradioProps> = () => {
         <RiButton text={"i am ripple"} />
       </Container>
       <FlexColumn>
+      
         {/* <ProgressBar value={10} color="#1e9256" /> */}
         {/*  */}
-        <AdvancedTT text={"this is my advanced Tool Tip"} type="right">
+        {/* <TagInput tags={["test","tests"]}/> */}
+        <AdvancedTT text={"this is my advanced Tool Tip"} type="right" srcpic="https://reactjsexample.com/content/images/2021/11/Snipaste_2021-11-09_21-13-57.jpg">
           <p>This is Right Tool-tip</p>
         </AdvancedTT>
-        <AdvancedTT text={"this is my advanced Tool Tip"} type="left">
+        <AdvancedTT text={"this is my advanced Tool Tip"} type="left" srcpic="https://reactjsexample.com/content/images/2021/10/altV-better-notify.jpg">
           <p>This is Left Tool-tip</p>
         </AdvancedTT>
-        <AdvancedTT text={"this is my advanced Tool Tip"} type="top">
+        <AdvancedTT text={"this is my advanced Tool Tip"} type="top" srcpic="https://reactjsexample.com/content/images/2020/08/react-js-banner.png">
           <p>This is Top Tool-tip</p>
         </AdvancedTT>
-        <AdvancedTT text={"this is my advanced Tool Tip"} type="bottom">
+        <AdvancedTT text={"this is my advanced Tool Tip"} type="bottom" srcpic="https://reactjsexample.com/content/images/2020/12/react-hot-toast.gif">
           <p>This is Bottom Tool-tip</p>
         </AdvancedTT>
       </FlexColumn>
@@ -106,15 +115,18 @@ const HomeScreen: React.FC<IradioProps> = () => {
           emojiSrc={"✌️"}
           maxWidth="400px"
         />
-        <FlexRow>
+        <FlexColumn>
           {radiostate}
           {Arr.map((item, index) => {
             return (
               <RadioCustom key={index} name={item.name} value={item.value} id={item.id} onChange={handleChangeradio} />
             )
           })}
-        </FlexRow>
+        </FlexColumn>
         <RadioButton />
+      </FlexColumn>
+      <FlexColumn>
+      <Gallery/>
       </FlexColumn>
 
     </>
