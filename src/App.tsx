@@ -7,9 +7,7 @@ import HomeScreen from "./Screens/Guest/HomeScreen";
 import CPicker from "./Themming/ButtonColorPicker";
 import { useDarkMode } from "./Themming/useDarkMode";
 
-
 function App() {
- 
 
   const {
     theme,
@@ -24,7 +22,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={{themeMode,colors}}>
-        <GlobalStyle {...themeMode}/>
+        <GlobalStyle {...themeMode}/>       
         <Navbar />
         <CPicker
           thecolor={colors}
