@@ -2,8 +2,7 @@ import { createGlobalStyle, ITheme } from "styled-components";
 import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle<ITheme>`
-    *{
-        margin: 0;
+    *{       
         /* padding: 0; */
         outline:0;
         box-sizing:border-box;
@@ -13,29 +12,33 @@ const GlobalStyle = createGlobalStyle<ITheme>`
         margin:0 auto;
     }
     body{
+      box-sizing: border-box;
+       margin: 0 auto;
       background: ${(themeMode) => themeMode.body};
       transition: background 0.35s ease;
-
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
  `;
 export default GlobalStyle;
 ///////////////////////////////////////////////////
+interface IGeneralProps {
+  display?: "flex";
+  justifyContent?: "start" | "center" | "end";
+  alignItems?: "start" | "center" | "end";
+  flexDirection?: "row" | "column";
+}
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  color: white;
-  /* background-color: #131A22; */
-`;
-
-export const MainContainer = styled("main")`
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-`;
+const px2vw = (size: number, width = 1920) => `${(size / width) * 100}vw`;
+const size = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "480px",
+  tablet: "768px",
+  laptop: "1366px",
+  laptopL: "1920px",
+  desktop: "2560px",
+};
 
 export const Typography = styled("p")<TypoProps>`
   width: 100%;
@@ -54,22 +57,68 @@ export const Hr = styled("div")<HrProps>`
   margin-bottom: ${(props) => props.MaB}px;
   margin-top: ${(props) => (props.Mt ? "10px" : "")};
 `;
+const Aspectrules = styled.div`
+  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
+  aspect-ratio: 0.5;
+`;
+export const Div = styled.div`
+max-width:1920px;
+height:auto;
+display:flex;
+margin: 0 auto;
+padding:0.50rem;
+box-sizing: border-box;
+      @media and screen (max-width:${size.mobileL}) {
+        max-width: 460px;
+        font-size: ${px2vw(12)};
+      }
+      @media and screen (min-width:${size.tablet}) {
+        max-width: 1100px;
+        font-size: ${px2vw(16)};
+        width: ${px2vw(2200, 1100)};
+      }
+      @media  and screen (min-width:${size.laptop}) {
+        max-width: 1366px;
+        font-size: ${px2vw(18)};
+        width: ${px2vw(3724, 1366)};
+      }
+      @media and screen (min-width:${size.laptopL}) {
+        max-width: 1920px;
+        font-size: ${px2vw(19)};
+        width: ${px2vw(3840, 1920)};
+      }
+      @media and screen (min-width:${size.desktop}) {
+        max-width: 2048px;
+        font-size: ${px2vw(20)};
+        width: ${px2vw(100)};
+      }
+    } 
+`;
 
-const Aspectrules=styled.div`
-aspect-ratio: 1 / 1;
-aspect-ratio: 16 / 9;
-aspect-ratio: 0.5;
+export const Container = styled(Div)`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+  /* background-color: #131A22; */
+`;
+export const MainContainer = styled(Div)`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+`;
 
-`
-
-
-export const FlexBox = styled("div")`
+export const FlexBox = styled(Div)`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: auto;
-  background: ${(props) => props.color};  
+  background: ${(props) => props.color};
 `;
 
 export const FlexRow = styled(FlexBox)`
@@ -89,20 +138,16 @@ export const FlexColumn = styled(FlexBox)`
 `;
 
 export const InnerSection = styled(FlexColumn)`
-  max-width: 1400px;
-  width: 100%;
+  max-width: 1366px;
   margin: 0 auto;
 `;
 
 ///////// FlexRow with Space Between \/
 export const InnerRowSB = styled(FlexRow)`
   justify-content: space-between;
-  width: 100%;
 `;
 export const endRow = styled(FlexRow)`
   justify-content: end;
-
-  width: 100%;
 `;
 
 export const SpinnerContainer = styled.div`

@@ -16,3 +16,9 @@ flex-direction:column;
 justify-content:start;
 align-items:start;
 `
+export const FlexStartRow=css`
+display:flex;
+flex-direction:row;
+justify-content:start;
+align-items:start;
+`

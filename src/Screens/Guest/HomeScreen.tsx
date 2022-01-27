@@ -8,10 +8,22 @@ import { Input } from "../../Components/Widgets/AnotherInput/AnotherInput";
 import Gallery from "../../Components/Widgets/Gallery/Gallery";
 import useSnackBar from "../../Components/Widgets/Snackbaar/SnackBaar";
 import AdvancedTT from "../../Components/Widgets/ToolTip/AdvancedToolTip";
-import { Container, FlexColumn, FlexRow } from "../../GlobalStyledCom";
+import { Container, FlexColumn, FlexRow, MainContainer } from "../../GlobalStyledCom";
 // import SnackBarTest from "../../Components/Widgets/Snackbaar/SnackBaar";
 import TagInput from "../../Components/MiniWidgets/TagInput/TagInput";
-import SearchTaginput from "../../Components/MiniWidgets/Serachtaginput/TagSearch";
+// import SearchTaginput from "../../Components/MiniWidgets/Serachtaginput/TagSearch";
+import TaskList from "../../Components/Widgets/DNDTest/DNDtest";
+import Card from "../../Components/Widgets/Card/Card";
+import { Loading } from "../../Components/MiniWidgets/Animations/LoadingAnimation/Loading";
+import Test2 from "../../Components/Widgets/DNDTest/test2";
+import DropFileInput from "../../Components/Widgets/FileUploader/FileUpload";
+import CalendarTable from "../../Components/Widgets/Calender/Calender";
+import CubeLoader from "../../Components/MiniWidgets/Animations/LoadingAnimation/cube";
+import Bar1 from "../../Components/MiniWidgets/Progress2/HorizentalProgress";
+import CircleBar from "../../Components/MiniWidgets/Progresscircle/CircleProgress";
+import ProgressBox from "../../Components/MiniWidgets/ProgressBox/ProgerssBox";
+import RatingCircle from "../../Components/MiniWidgets/Circleratepreveiw/RateCirclePreveiw";
+import StyledProgressbar, { Demo } from "../../Components/MiniWidgets/StyledProgress/StyledProg";
 
 interface IradioProps {
   type: 'radio';
@@ -32,10 +44,8 @@ interface RadioArrShape extends IProps {
 
 type Tstate = Omit<RadioArrShape, 'arr'>
 
-
-
 const HomeScreen = () => {
-  const { snakeBar, St } = useSnackBar();
+  // const { snakeBar, St } = useSnackBar();
   const [inputstate, setstate] = useState<string>("");
   const [radiostate, setradiostate] = useState<string>("");
   const [Arr] = useState<Tstate[]>([
@@ -56,23 +66,34 @@ const HomeScreen = () => {
     },
   ]);
 
-  const handleChangeradio = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      setradiostate(e.target.value)
-      snakeBar("success");
-    }
-    return
-  };
+  // const handleChangeradio = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.value) {
+  //     setradiostate(e.target.value)
+  //     snakeBar("success");
+  //   }
+  //   return
+  // };
   return (
-    <>
-      <St />
+    <MainContainer>
+      <Demo/>
+       {/* <StyledProgressbar percent={50}>
+       <h1 style={{ margin: 0, padding: "10px" }}>
+        Progress bar with masked content
+      </h1>
+    </StyledProgressbar> */}
+        {/* <RatingCircle rating={70}/> */}
+        {/* <ProgressBox text="done" value={1}/> */}
+      {/* <St /> */}
       <Container >
-
-        {/* tags={["google","linkdin"]} */}
-      <SearchTaginput
-      />
+        {/* <Test2/> */}
+        <DropFileInput/>
+        <CalendarTable/>
       </Container>
       <Container>
+        {/* <Bar1/> */}
+        {/* <CircleBar/> */}
+        {/* <Card/> */}
+        {/* <Loading/> */}
         <Button
           text={"iam here"}
           auto={"auto"}
@@ -83,7 +104,7 @@ const HomeScreen = () => {
         <RiButton text={"i am ripple"} />
       </Container>
       <FlexColumn>
-      
+
         {/* <ProgressBar value={10} color="#1e9256" /> */}
         {/*  */}
         {/* <TagInput tags={["test","tests"]}/> */}
@@ -108,7 +129,7 @@ const HomeScreen = () => {
           label={"Email"}
         />
         {inputstate}
-        <Input
+        {/* <Input
           onChange={val => console.log(val)}
           placeholder="With Icon..."
           className="hello"
@@ -123,13 +144,14 @@ const HomeScreen = () => {
             )
           })}
         </FlexColumn>
-        <RadioButton />
+        <RadioButton /> */}
       </FlexColumn>
       <FlexColumn>
-      <Gallery/>
+        {/* <Gallery/> */}
+        {/* <TaskList /> */}
       </FlexColumn>
 
-    </>
+    </MainContainer>
   );
 };
 

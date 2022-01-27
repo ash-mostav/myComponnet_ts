@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FlexRow, InnerSection } from "../../GlobalStyledCom";
 
 export const NavbarContainer = styled("nav")`
-  width: 100%;
+  max-width:1920px;
   height: 55px;
   background: ${({ theme }) => theme.colors};
   /* background: hsl(220,50%,50%);; */
@@ -15,12 +15,13 @@ export const NavbarContainer = styled("nav")`
   z-index: 99;
 `;
 export const InnerNav = styled(InnerSection)`
-  /* width: 100%; */
+  width: 100%;
+  max-width:1620px;
   flex-direction: row;
   justify-content: space-between;
 `;
 export const NavBox = styled(FlexRow)`
-  width: auto;
+  width: 100%;
 `;
 export const StyledLink = styled("a")`
   color: #fff;
@@ -77,8 +78,8 @@ export const Icon = styled("a")`
   text-decoration: none;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 40px;
+  flex-direction: row;
+  height: 30px;
   width: auto;
   margin: auto 0 auto 32px;
   cursor: pointer;
@@ -100,7 +101,7 @@ export const Icon = styled("a")`
   }
 `;
 export const SearchIconNav = styled("i")`
-  font-size: 18px;
+  font-size: 1rem;
   margin-right: 5px;
 `;
 
