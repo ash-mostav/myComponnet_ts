@@ -1,10 +1,12 @@
 export { default as AddIcon } from "./Icons/Add";
 export { default as ArrowBackIcon } from "./Icons/ArrowBack";
+export { default as ArrowBackNoCline } from "./Icons/ArrowBackNoCline";
 export { default as ArrowDownIcon } from "./Icons/ArrowDown";
 export { default as ArrowDropDownIcon } from "./Icons/ArrowDropDown";
 export { default as ArrowDropUpIcon } from "./Icons/ArrowDropUp";
 export { default as ArrowFirstIcon } from "./Icons/ArrowFirst";
 export { default as ArrowForwardIcon } from "./Icons/ArrowForward";
+export { default as ArrowForwardNoCline } from "./Icons/ArrowForwardNoCline";
 export { default as ArrowLastIcon } from "./Icons/ArrowLast";
 export { default as ArrowUpIcon } from "./Icons/ArrowUp";
 export { default as AutoRenewIcon } from "./Icons/AutoRenew";

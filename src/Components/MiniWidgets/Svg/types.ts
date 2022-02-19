@@ -3,4 +3,5 @@ import { SVGAttributes } from "react";
 export interface SvgProps extends SVGAttributes<HTMLOrSVGElement> {
   spin?: boolean;
   Path?:string;
+  width?:string;
 }

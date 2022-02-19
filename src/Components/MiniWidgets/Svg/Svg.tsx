@@ -18,7 +18,8 @@ const Svg = styled.svg<SvgProps>`
   align-self: center; // Safari fix
   fill: ${({ theme}) => theme.colors};
   flex-shrink: 0;
-  ${({ spin }) => spin && spinStyle}
+  ${({ spin }) => spin && spinStyle};
+  width:${({width})=>width};
 `;
 
 Svg.defaultProps = {

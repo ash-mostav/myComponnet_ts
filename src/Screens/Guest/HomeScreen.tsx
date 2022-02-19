@@ -24,6 +24,9 @@ import CircleBar from "../../Components/MiniWidgets/Progresscircle/CircleProgres
 import ProgressBox from "../../Components/MiniWidgets/ProgressBox/ProgerssBox";
 import RatingCircle from "../../Components/MiniWidgets/Circleratepreveiw/RateCirclePreveiw";
 import StyledProgressbar, { Demo } from "../../Components/MiniWidgets/StyledProgress/StyledProg";
+import SVGsScreen from "./svgsscreen";
+import Slider from "../../Components/Widgets/Carousel/page1";
+import Carousel from "../../Components/Widgets/Carousel/CarouselTest";
 
 interface IradioProps {
   type: 'radio';
@@ -73,9 +76,28 @@ const HomeScreen = () => {
   //   }
   //   return
   // };
+
+ 
   return (
     <MainContainer>
       <Demo/>
+      <Carousel  
+        width={"95vw"}
+        height={"56vh"}
+        numItemsInView={1}
+
+        >
+        <p><p>mostafa</p>1</p>
+        <p><p>ahmed</p>2</p>
+        <p><p>kh</p>3</p>
+        <p><p>4</p>4</p>
+        <p><p>5</p>5</p>
+        <p><p>6</p>6</p>
+        <p><p>7</p>7</p>
+        <p><p>8</p>8</p>
+        <p><p>9</p>9</p>
+        <p><p>10</p>10</p>
+        </Carousel>
        {/* <StyledProgressbar percent={50}>
        <h1 style={{ margin: 0, padding: "10px" }}>
         Progress bar with masked content
@@ -84,16 +106,10 @@ const HomeScreen = () => {
         {/* <RatingCircle rating={70}/> */}
         {/* <ProgressBox text="done" value={1}/> */}
       {/* <St /> */}
+      <Slider/>
       <Container >
         {/* <Test2/> */}
-        <DropFileInput/>
         <CalendarTable/>
-      </Container>
-      <Container>
-        {/* <Bar1/> */}
-        {/* <CircleBar/> */}
-        {/* <Card/> */}
-        {/* <Loading/> */}
         <Button
           text={"iam here"}
           auto={"auto"}
@@ -103,12 +119,23 @@ const HomeScreen = () => {
         <RiButton to={"/home"} text={"i am ripple"} />
         <RiButton text={"i am ripple"} />
       </Container>
+      <Container>
+
+        <DropFileInput />
+
+
+        {/* <Bar1/> */}
+        {/* <CircleBar/> */}
+        {/* <Card/> */}
+        {/* <Loading/> */}
+       
+      </Container>
       <FlexColumn>
 
         {/* <ProgressBar value={10} color="#1e9256" /> */}
         {/*  */}
         {/* <TagInput tags={["test","tests"]}/> */}
-        <AdvancedTT text={"this is my advanced Tool Tip"} type="right" srcpic="https://reactjsexample.com/content/images/2021/11/Snipaste_2021-11-09_21-13-57.jpg">
+        {/* <AdvancedTT text={"this is my advanced Tool Tip"} type="right" srcpic="https://reactjsexample.com/content/images/2021/11/Snipaste_2021-11-09_21-13-57.jpg">
           <p>This is Right Tool-tip</p>
         </AdvancedTT>
         <AdvancedTT text={"this is my advanced Tool Tip"} type="left" srcpic="https://reactjsexample.com/content/images/2021/10/altV-better-notify.jpg">
@@ -119,16 +146,15 @@ const HomeScreen = () => {
         </AdvancedTT>
         <AdvancedTT text={"this is my advanced Tool Tip"} type="bottom" srcpic="https://reactjsexample.com/content/images/2020/12/react-hot-toast.gif">
           <p>This is Bottom Tool-tip</p>
-        </AdvancedTT>
+        </AdvancedTT> */}
       </FlexColumn>
       <FlexColumn>
-        <AdvancedInput
+        {/* <AdvancedInput
           name={"email"}
           placeholder={"Write your E-mail"}
           onChange={(e) => setstate(e.target.value)}
           label={"Email"}
-        />
-        {inputstate}
+        />        */}
         {/* <Input
           onChange={val => console.log(val)}
           placeholder="With Icon..."
@@ -150,6 +176,9 @@ const HomeScreen = () => {
         {/* <Gallery/> */}
         {/* <TaskList /> */}
       </FlexColumn>
+      {/* <SVGsScreen/> */}
+ 
+
 
     </MainContainer>
   );
